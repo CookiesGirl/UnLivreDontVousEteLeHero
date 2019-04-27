@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import application.PaneTab;
+import application.ChapterPaneTab;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -23,29 +23,36 @@ public class AdministrationController implements Initializable{
 	private Button newButton = new Button();
 	
 	@FXML
-	private TabPane pane = new TabPane();
+	private TabPane chapterPane = new TabPane();
+	
+	@FXML
+	private TabPane playerPane = new TabPane();
+	
+	@FXML
+	private TabPane monsterPane = new TabPane();
 	
 	@FXML
 	private TextField newChapterTextField = new TextField();
 	
-	private ArrayList<PaneTab> tabList = new ArrayList<PaneTab>();
+	private ArrayList<ChapterPaneTab> tabList = new ArrayList<ChapterPaneTab>();
 	
 	
 	
 	public void newChapter() {
-		tabList.add(new PaneTab(pane,"Chapitre "+newChapterTextField.getText())); 
-		newChapterTextField.clear();
+		System.out.println(newChapterTextField.getText());
+		if(newChapterTextField.getText().isEmpty()!=true) {
+			tabList.add(new ChapterPaneTab(chapterPane,"Chapitre "+newChapterTextField.getText())); 
+			newChapterTextField.clear();
+		}
 	}
 	
-
-
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		System.out.println("started");
-		tabList.add(new PaneTab(pane,"prototype"));
-
-
-
+		newChapterTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+			newChapterTextField.setText(newValue.replaceAll("[^\\d]", ""));
+		});
 	}
 
 }
