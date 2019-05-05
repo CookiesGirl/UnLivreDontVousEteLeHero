@@ -5,14 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/applicationView/menuView.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("view/menuView.fxml"));
 			Stage stage = new Stage();
 			stage.setScene(new Scene(root));
 			stage.setResizable(false);
