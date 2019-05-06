@@ -12,7 +12,11 @@ public class Chapter {
 		this.id=id;
 		this.text=text;
 	}
-
+	public void refreshChoices(){
+		for(Choice c : choices) {
+			c.setChapter(id);;
+		}
+	}
 
 	
 	

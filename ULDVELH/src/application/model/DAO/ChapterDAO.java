@@ -19,7 +19,8 @@ public class ChapterDAO extends DAO<Chapter>{
 			ResultSet result = statement.executeQuery("SELECT * FROM uldvelh.chapter ORDER BY idChapter");
 			while(result.next()) {
 				int id=result.getInt("idChapter");
-				chapterList.add(new Chapter(id,result.getString("text")));
+				String text =new String(result.getString("text").getBytes(), "UTF-8");
+				chapterList.add(new Chapter(id,text));
 			}			
 			MySqlConnection.endConnection();
 			return chapterList;

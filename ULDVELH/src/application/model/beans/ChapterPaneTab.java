@@ -92,8 +92,8 @@ public class ChapterPaneTab {
 				//évènement de click dur le bouton "+"
 				addButton.setOnAction(e ->{
 					Choice c =new Choice(chapter.getChoices().size(),"nom",1);
-					c.setChapter(chapter.getId());
 					chapter.getChoices().add(c);
+					chapter.refreshChoices();
 					refresh(chapter);
 				});
 			}
@@ -135,6 +135,7 @@ public class ChapterPaneTab {
 			if(chapter.getText().length()==0) {
 				chapter.setText(" ");
 			}
+			chapter.setText(textArea.getText());
 			DAO.updateChapter(chapter);
 		});
 		
