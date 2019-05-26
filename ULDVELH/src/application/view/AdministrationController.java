@@ -7,6 +7,7 @@ import application.model.beans.ChapterPaneTab;
 import application.model.beans.MonsterPaneTab;
 import application.model.beans.ObjectPaneTab;
 import application.model.beans.PlayerPaneTab;
+import application.model.beans.WeaponPaneTab;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +49,9 @@ public class AdministrationController implements Initializable{
 	private TabPane monsterPane = new TabPane();
 	
 	@FXML
+	private TabPane weaponPane = new TabPane();
+	
+	@FXML
 	private Pane objectPane = new Pane();
 	
 	@FXML
@@ -68,6 +72,7 @@ public class AdministrationController implements Initializable{
 	private MonsterPaneTab MPT;
 	private ChapterPaneTab CPT;
 	private ObjectPaneTab OPT;
+	private WeaponPaneTab WPT;
 	
 	
 	@FXML
@@ -109,7 +114,7 @@ public class AdministrationController implements Initializable{
 	@FXML
 	private void newWeapon() {
 		if(newWeaponTextField.getText().isEmpty()!=true) {
-			OPT.addObject(newWeaponTextField.getText());
+			WPT.addWeapon(newWeaponTextField.getText());
 			newWeaponTextField.clear();
 		}
 	}
@@ -130,9 +135,13 @@ public class AdministrationController implements Initializable{
 		OPT = new ObjectPaneTab(objectPane);
 		OPT.draw();
 		
+		WPT = new WeaponPaneTab(weaponPane);
+		WPT.draw();
+		
 		
 		chapterPane.setTabClosingPolicy(TabClosingPolicy.SELECTED_TAB);
 		monsterPane.setTabClosingPolicy(TabClosingPolicy.SELECTED_TAB);
+		weaponPane.setTabClosingPolicy(TabClosingPolicy.SELECTED_TAB);
 		newChapterTextField.textProperty().addListener((observable, oldValue, newValue) -> {
 			newChapterTextField.setText(newValue.replaceAll("[^\\d]", ""));
 		});
