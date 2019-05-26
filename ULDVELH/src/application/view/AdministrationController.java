@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import application.model.beans.ChapterPaneTab;
 import application.model.beans.MonsterPaneTab;
+import application.model.beans.ObjectPaneTab;
 import application.model.beans.PlayerPaneTab;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class AdministrationController implements Initializable{
@@ -27,6 +29,11 @@ public class AdministrationController implements Initializable{
 	@FXML
 	private Button newMonsterButton = new Button();
 	
+	@FXML
+	private Button newObjectButton = new Button();
+	
+	@FXML
+	private Button newWeaponButton = new Button();
 	
 	@FXML
 	private Button homeButton = new Button();
@@ -41,16 +48,26 @@ public class AdministrationController implements Initializable{
 	private TabPane monsterPane = new TabPane();
 	
 	@FXML
+	private Pane objectPane = new Pane();
+	
+	@FXML
 	private TextField newChapterTextField = new TextField();
 	
 	@FXML
 	private TextField newMonsterTextField = new TextField();
+	
+	@FXML
+	private TextField newObjectTextField = new TextField();
+	
+	@FXML
+	private TextField newWeaponTextField = new TextField();
 	
 	protected ArrayList<ChapterPaneTab> tabList = new ArrayList<ChapterPaneTab>();
 	
 	private PlayerPaneTab PPT;
 	private MonsterPaneTab MPT;
 	private ChapterPaneTab CPT;
+	private ObjectPaneTab OPT;
 	
 	
 	@FXML
@@ -81,6 +98,21 @@ public class AdministrationController implements Initializable{
 			newMonsterTextField.clear();
 		}
 	}
+	@FXML
+	private void newObject() {
+		if(newObjectTextField.getText().isEmpty()!=true) {
+			OPT.addObject(newObjectTextField.getText());
+			newObjectTextField.clear();
+		}
+	}
+	
+	@FXML
+	private void newWeapon() {
+		if(newWeaponTextField.getText().isEmpty()!=true) {
+			OPT.addObject(newWeaponTextField.getText());
+			newWeaponTextField.clear();
+		}
+	}
 	
 	
 	@Override
@@ -94,6 +126,9 @@ public class AdministrationController implements Initializable{
 		
 		MPT = new MonsterPaneTab(monsterPane);
 		MPT.draw();
+		
+		OPT = new ObjectPaneTab(objectPane);
+		OPT.draw();
 		
 		
 		chapterPane.setTabClosingPolicy(TabClosingPolicy.SELECTED_TAB);

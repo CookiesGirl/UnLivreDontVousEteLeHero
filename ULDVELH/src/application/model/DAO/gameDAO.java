@@ -126,15 +126,13 @@ public class GameDAO extends DAO{
 	}
 
 	@Override
-	public Object create(Object obj) {
+	public void create(Object obj) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
-	public Object update(Object obj) {
+	public void update(Object obj) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

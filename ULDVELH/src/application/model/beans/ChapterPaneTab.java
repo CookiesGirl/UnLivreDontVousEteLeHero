@@ -65,7 +65,9 @@ public class ChapterPaneTab {
 		
 		if(chapter.getChoices().size()==0) {
 			try {
-				chapter.getChoices().add(new Choice(chapter.getChoices().size(),"Evenement",1));
+				Choice c =new Choice(chapter.getChoices().size(),"Evenement",1);
+				c.setChapter(chapter.getId());
+				chapter.getChoices().add(c);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -122,7 +124,7 @@ public class ChapterPaneTab {
 				
 			}
 			else {
-				DAO.deleteChapter(chapter.getId());
+				DAO.delete(chapter);
 				mapCT.remove(chapter);
 			}
 		});
@@ -135,7 +137,7 @@ public class ChapterPaneTab {
 			if(chapter.getText().length()==0) {
 				chapter.setText(" ");
 			}
-			DAO.updateChapter(chapter);
+			DAO.update(chapter);
 		});
 		
 		
@@ -149,7 +151,7 @@ public class ChapterPaneTab {
 	}
 	
 	public void addChapter(String name) {
-		DAO.createChapter(name);
+		DAO.create(new Chapter(Integer.parseInt(name),""));
 		pane.getTabs().clear();
 		draw();
 	}

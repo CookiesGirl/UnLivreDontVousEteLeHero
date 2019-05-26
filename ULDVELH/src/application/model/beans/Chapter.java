@@ -13,11 +13,6 @@ public class Chapter {
 		this.text=text;
 	}
 
-
-	
-	
-	
-	
 	public int getId() {
 		return id;
 	}

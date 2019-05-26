@@ -15,49 +15,6 @@ public class Monster {
 		setRank(rank);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	public int getIdMonster() {
 		return idMonster;

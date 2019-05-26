@@ -16,6 +16,12 @@ public class MySqlConnection {
 	public static Connection startConnection(){
 	    if(connect == null){
 		try {
+			try {
+				Class.forName("org.mariadb.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		    connect = DriverManager.getConnection(url, user, passwd);
 		} 
 		catch (SQLException e) {

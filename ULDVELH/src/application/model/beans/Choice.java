@@ -1,6 +1,5 @@
 package application.model.beans;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -31,12 +30,6 @@ public class Choice {
 		TextField choice = new TextField(text);
 		Label nextChapter = new Label("qui renvoie vers le chapitre : ");
 		TextField destination = new TextField(""+this.destination);
-		
-		//creation Bouton "+" et "-"
-		Button removeButton =new Button();
-		removeButton.setText("-");
-		Button addButton =new Button();
-		addButton.setText("+");
 		
 		HBox fightbox = new HBox();
 		CheckBox fightCheckbox = new CheckBox();

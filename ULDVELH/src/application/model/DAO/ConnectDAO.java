@@ -17,7 +17,8 @@ public class ConnectDAO extends DAO{
 			if(result.next()) {
 				exist=true;
 			}
-			MySqlConnection.endConnection();
+			statement.close();
+			result.close();
 			return exist;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -35,7 +36,8 @@ public class ConnectDAO extends DAO{
 			if(result.next()) {
 				exist=true;
 			}
-			MySqlConnection.endConnection();
+			statement.close();
+			result.close();
 			return exist;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -53,7 +55,8 @@ public class ConnectDAO extends DAO{
 			if(result.next()) {
 				tmp =result.getInt("privileges");
 			}
-			MySqlConnection.endConnection();
+			statement.close();
+			result.close();
 			return tmp;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -71,7 +74,8 @@ public class ConnectDAO extends DAO{
 			if(result.next()) {
 				tmp=result.getInt("health");
 			}
-			MySqlConnection.endConnection();
+			statement.close();
+			result.close();
 			return tmp;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -92,7 +96,8 @@ public class ConnectDAO extends DAO{
 			statement.execute("INSERT INTO uldvelh.equipment(idEquipment) values("+idUser+")");
 			statement.execute("INSERT INTO uldvelh.character(idCharacter,name,health,Bag_idBag,Equipment_idEquipment,Chapter_idChapter) values("+idUser+",'"+username+"',10,"+idUser+","+idUser+",1)");
 			statement.executeUpdate("UPDATE uldvelh.user SET Character_idCharacter ="+idUser+" WHERE idUser="+idUser);
-			MySqlConnection.endConnection();
+			statement.close();
+			result.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -107,7 +112,8 @@ public class ConnectDAO extends DAO{
 			if(result.next()) {
 				tmp=result.getInt("idUser");
 			}
-			MySqlConnection.endConnection();
+			statement.close();
+			result.close();
 			return tmp;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -123,15 +129,13 @@ public class ConnectDAO extends DAO{
 	}
 
 	@Override
-	public Object create(Object obj) {
+	public void create(Object obj) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
-	public Object update(Object obj) {
+	public void update(Object obj) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

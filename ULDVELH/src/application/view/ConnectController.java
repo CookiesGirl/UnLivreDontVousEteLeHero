@@ -3,7 +3,6 @@ package application.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 import application.model.DAO.ConnectDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -37,7 +36,7 @@ public class ConnectController implements Initializable{
 
 	
 	
-	public void createUser(ActionEvent event) {
+	public void createUser() {
 		if(name.getText().isEmpty() || pass.getText().isEmpty()) {
 			alert.setHeaderText(null);
 			alert.setContentText("Tous les champs doivent être renseignés");
@@ -51,13 +50,13 @@ public class ConnectController implements Initializable{
 			}
 			else {
 				DAO.createUser(name.getText(), pass.getText());
-				tryConnection(event);
+				tryConnection();
 			}
 		}
 	}
 
 	
-	public void tryConnection(ActionEvent event) {
+	public void tryConnection() {
 		if(name.getText().isEmpty() || pass.getText().isEmpty()) {
 			alert.setHeaderText(null);
 			alert.setContentText("Tous les champs doivent être renseignés");
@@ -100,7 +99,11 @@ public class ConnectController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		pass.setOnKeyReleased(value->{
+			if(value.getCode().toString()=="ENTER") {
+				tryConnection();
+			}
+		});
 	}
 	
 	

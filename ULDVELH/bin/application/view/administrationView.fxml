@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -39,7 +40,7 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1280.0">
                                        <children>
-                                          <Label text="numéro Chapitre :" />
+                                          <Label text="Numéro du Chapitre :" />
                                           <TextField fx:id="newChapterTextField" alignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="15.0" />
@@ -90,7 +91,7 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1280.0">
                                        <children>
-                                          <Label text="nom Monstre :" />
+                                          <Label text="Nom du Monstre :" />
                                           <TextField fx:id="newMonsterTextField" alignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="15.0" />
@@ -115,6 +116,68 @@
                      </content>
                 </Tab>
                   <Tab text="Objets">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="762.0" prefWidth="1252.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1280.0">
+                                       <children>
+                                          <Label text="Nom de l'Objet :" />
+                                          <TextField fx:id="newObjectTextField" alignment="CENTER">
+                                             <HBox.margin>
+                                                <Insets right="15.0" />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <Button fx:id="newObjectButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newObject" text="Ajouter" textAlignment="CENTER">
+                                             <HBox.margin>
+                                                <Insets right="15.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Pane fx:id="objectPane" prefHeight="590.0" prefWidth="1252.0">
+                                       <VBox.margin>
+                                          <Insets bottom="50.0" left="100.0" right="100.0" top="50.0" />
+                                       </VBox.margin>
+                                    </Pane>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Armes">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="653.0" prefWidth="1252.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1280.0">
+                                       <children>
+                                          <Label text="Nom du Monstre :" />
+                                          <TextField fx:id="newMonsterTextField1" alignment="CENTER">
+                                             <HBox.margin>
+                                                <Insets right="15.0" />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <Button fx:id="newMonsterButton1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newMonster" text="Ajouter" textAlignment="CENTER">
+                                             <HBox.margin>
+                                                <Insets right="15.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <TabPane prefHeight="627.0" prefWidth="877.0" tabClosingPolicy="UNAVAILABLE">
+                                       <VBox.margin>
+                                          <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                                       </VBox.margin>
+                                    </TabPane>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Combats">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>

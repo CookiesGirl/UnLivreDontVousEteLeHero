@@ -3,7 +3,6 @@ package application.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 import application.model.DAO.ConnectDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,7 +32,7 @@ public class ConnectParamController implements Initializable{
 	
 	private Alert alert = new Alert(AlertType.ERROR);
 	
-	public void tryConnection(ActionEvent event) {
+	public void tryConnection() {
 		if(name.getText().isEmpty() || pass.getText().isEmpty()) {
 			alert.setHeaderText(null);
 			alert.setContentText("Tous les champs doivent être renseignés");
@@ -79,13 +78,11 @@ public class ConnectParamController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		pass.setOnKeyReleased(value->{
+			if(value.getCode().toString()=="ENTER") {
+				tryConnection();
+			}
+		});
 	}
 
 	

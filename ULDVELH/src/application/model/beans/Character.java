@@ -15,17 +15,6 @@ public class Character {
 		this.currentChapter=currentChapter;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public int getCurrentChapter() {
 		return currentChapter;
 	}

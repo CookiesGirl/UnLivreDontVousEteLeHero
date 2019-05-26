@@ -1,8 +1,8 @@
 package application.model.DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import application.model.beans.Monster;
@@ -13,13 +13,14 @@ public class MonsterDAO extends DAO<Monster>{
 		ArrayList<Monster> monsterList =new ArrayList<Monster>();
 		try {
 			Connection connection = MySqlConnection.startConnection();
-			Statement statement = connection.createStatement();
-			ResultSet result = statement.executeQuery("SELECT * FROM uldvelh.monster ORDER BY name");
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM uldvelh.monster ORDER BY name");
+			ResultSet result = statement.executeQuery();
 			
 			while(result.next()) {
 				monsterList.add(new Monster(result.getInt("idMonster"),result.getString("name"),result.getInt("health"),result.getInt("damage"),result.getInt("rank")));
 			}
-			MySqlConnection.endConnection();
+			result.close();
+			statement.close();
 			return monsterList;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -27,79 +28,68 @@ public class MonsterDAO extends DAO<Monster>{
 		
 		return null;
 	}
-	
-	public void addMonster(String name,int health,int damage,int rank) {
-		try {
-			Connection connection = MySqlConnection.startConnection();
-			Statement statement = connection.createStatement();
-			statement.execute("INSERT INTO uldvelh.monster(name,health,damage,rank) VALUES ('"+name+"',"+health+","+damage+","+rank+")");
-			MySqlConnection.endConnection();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void deleteById(int id) {
-		try {
-			Connection connection = MySqlConnection.startConnection();
-			Statement statement = connection.createStatement();
-			statement.execute("DELETE FROM uldvelh.monster WHERE idMonster="+id);
-			MySqlConnection.endConnection();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void updateMonster(Monster m) {
-		try {
-			Connection connection = MySqlConnection.startConnection();
-			Statement statement = connection.createStatement();
-			statement.executeUpdate("UPDATE uldvelh.monster SET health="+m.getHealth()+",damage="+m.getDamage()+",rank="+m.getRank()+" WHERE idMonster="+m.getIdMonster());
-			MySqlConnection.endConnection();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@Override
 	public Monster findById(int id) {
-		// TODO Auto-generated method stub
+		Monster monster= null;
+		try {
+			Connection connection = MySqlConnection.startConnection();
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM uldvelh.monster ORDER BY name");
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()) {
+				monster= new Monster(result.getInt("idMonster"),result.getString("name"),result.getInt("health"),result.getInt("damage"),result.getInt("rank"));
+			}
+			result.close();
+			statement.close();
+			return monster;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
-
+	
 	@Override
-	public Monster create(Monster obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public void create(Monster m) {
+		try {
+			Connection connection = MySqlConnection.startConnection();
+			PreparedStatement statement = connection.prepareStatement("INSERT INTO uldvelh.monster(name,health,damage,rank) VALUES ( ? , ? , ? , ? )");
+			statement.setString(1, m.getName());
+			statement.setInt(2, m.getHealth());
+			statement.setInt(3, m.getDamage());
+			statement.setInt(4, m.getRank());
+			statement.execute();
+			statement.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-
+	
 	@Override
-	public Monster update(Monster obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public void delete(Monster m) {
+		try {
+			Connection connection = MySqlConnection.startConnection();
+			PreparedStatement statement = connection.prepareStatement("DELETE FROM uldvelh.monster WHERE idMonster=?");
+			statement.setInt(1, m.getIdMonster());
+			statement.execute();
+			statement.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-
+	
 	@Override
-	public void delete(Monster obj) {
-		// TODO Auto-generated method stub
-		
+	public void update(Monster m) {
+		try {
+			Connection connection = MySqlConnection.startConnection();
+			PreparedStatement statement = connection.prepareStatement("UPDATE uldvelh.monster SET health= ? ,damage= ? ,rank= ? WHERE idMonster= ?");
+			statement.setInt(1, m.getHealth());
+			statement.setInt(2, m.getDamage());
+			statement.setInt(3, m.getRank());
+			statement.setInt(4, m.getIdMonster());
+			statement.executeUpdate();
+			statement.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-
 }

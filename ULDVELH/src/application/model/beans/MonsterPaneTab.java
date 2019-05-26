@@ -90,7 +90,7 @@ public class MonsterPaneTab {
 			monster.setHealth(Integer.parseInt(healthTextField.getText()));
 			monster.setDamage(Integer.parseInt(damageTextField.getText()));
 			monster.setRank(Integer.parseInt(rankTextField.getText()));
-			DAO.updateMonster(monster);
+			DAO.update(monster);
 		});
 		
 		
@@ -106,12 +106,12 @@ public class MonsterPaneTab {
 		pane.getTabs().add(tab);
 	}
 	public void addMonster(String name) {
-		DAO.addMonster(name, 0, 0, 0);
+		DAO.create(new Monster(0,name, 0, 0,0));
 		pane.getTabs().clear();
 		draw();
 	}
 	
 	public void deleteMonster(Monster m) {
-		DAO.deleteById(m.getIdMonster());
+		DAO.delete(m);
 	}
 }
